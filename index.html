@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-body-primary">
+
+  <nav class="navbar navbar-expand-lg bg-body-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-semibold" href="index.html">Student Information System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">About</a> -->
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search...(ID only)" aria-label="Search" id="searchInput" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col m-5">
+
+        <div class="mb-4">
+          <h3>Student Records</h3>
+        </div>
+
+        <div class="row">
+          <div class="d-flex justify-content-end mb-4">
+            <button class="btn btn-success" id="addStudentBtn" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add Student</button>
+          </div>
+          <table class="table align-middle text-center table-borderless header-divider">
+            <thead>
+              <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Course</th>
+                <th scope="col">Year Level</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="tableData"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Add Student Modal -->
+  <div class="modal fade" id="addStudentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Add User</h5>
+        </div>
+
+        <form action="" id="addStudentForm">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-8 mb-3">
+                <label class="form-label" for="fullNameInput">Full Name</label>
+                <input class="form-control" type="text" name="fullNameInput" id="fullNameInput" autocomplete="off" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label" for="idInput">ID No.</label>
+                <input class="form-control" type="text" name="idInput" id="idInput" maxlength="8" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-7 mb-3">
+                <label class="form-label" for="courseInput">Course</label>
+                <input class="form-control" type="text" name="courseInput" id="courseInput" autocomplete="off" required>
+              </div>
+              <div class="col-md-5 mb-3">
+                <label class="form-label" for="yearLevelInput">Year Level</label>
+                <select class="form-select" name="yearLevelInput" id="yearLevelInput" required>
+                  <option value="">Select...</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col mb-3">
+              <label class="form-label" for="emailInput">Email Address</label>
+              <input class="form-control" type="email" name="emailInput" id="emailInput" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" id="addStudentBtn2" class="btn btn-primary">Add Student</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Student Modal -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Edit User</h5>
+        </div>
+
+        <form action="" id="editUserForm">
+          <div class="modal-body">
+
+            <div class="mb-3"><h5 id="editUserName">Earl Jeno Garcia</h5></div>
+
+            <div class="row">
+              <div class="col-md-8 mb-3">
+                <label class="form-label" for="fullNameEdit">Full Name</label>
+                <input class="form-control" type="text" name="fullNameEdit" id="fullNameEdit" autocomplete="off" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label" for="idEdit">ID No.</label>
+                <input class="form-control" type="text" name="idEdit" id="idEdit" maxlength="8" readonly required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-7 mb-3">
+                <label class="form-label" for="courseEdit">Course</label>
+                <input class="form-control" type="text" name="courseEdit" id="courseEdit" autocomplete="off" required>
+              </div>
+              <div class="col-md-5 mb-3">
+                <label class="form-label" for="yearLevelEdit">Year Level</label>
+                <select class="form-select" name="yearLevelEdit" id="yearLevelEdit" required>
+                  <option value="">Select...</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col mb-3">
+              <label class="form-label" for="emailEdit">Email Address</label>
+              <input class="form-control" type="email" name="emailEdit" id="emailEdit"autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Delete Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <div class="modal-title">Deleter User <span id="deleteWho"></span></div>
+        </div>
+
+        <div class="modal-body">
+
+          <div>
+            <p>Are you sure you want to delete [TO DO]? This action cannot be undone."</p>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-danger" id="deleteConfirmed">Delete</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script async src="script.js" defer></script>
+</body>
+
+</html>
